@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to Happy New Year</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to bottom, #1a2980, #26d0ce);
+      color: white;
+      text-align: center;
+    }
+
+    .countdown-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .time-box {
+      background: #333;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .time-box small {
+      font-size: 1rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown-container">
+    <h1>Countdown to Happy New Year!</h1>
+    <div class="countdown">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Days</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Hours</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Minutes</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Seconds</small>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function countdownToNewYear() {
+      // Set the target date to midnight of January 1st
+      const newYearDate = new Date('January 1, 2025 00:00:00').getTime();
+
+      // Get current time
+      const now = new Date().getTime();
+
+      // Calculate the time difference
+      const timeLeft = newYearDate - now;
+
+      if (timeLeft > 0) {
+        // Convert the difference into days, hours, minutes, and seconds
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        // Display the results in the HTML
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+      } else {
+        // When the countdown is over, display "Happy New Year!"
+        document.querySelector('.countdown-container').innerHTML = `
+          <h1>🎉 Happy New Year! 🎆</h1>
+          <h1>I Love U so much</h1>
+        `;
+      }
+    }
+
+    // Update the countdown every second
+    setInterval(countdownToNewYear, 1000);
+    countdownToNewYear();
+  </script>
+</body>
+</html>
